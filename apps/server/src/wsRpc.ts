@@ -719,7 +719,10 @@ export const makeWsRpcLayer = () =>
         [WS_METHODS.providerListAgents]: (input) =>
           rpcEffect(providerDiscoveryService.listAgents(input), "Failed to list agents"),
         [WS_METHODS.skillsListLocal]: (_input) =>
-          rpcEffect(Effect.tryPromise(() => listLocalUserSkills()), "Failed to list local skills"),
+          rpcEffect(
+            Effect.tryPromise(() => listLocalUserSkills()),
+            "Failed to list local skills",
+          ),
       });
     }),
   );

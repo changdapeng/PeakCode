@@ -36,6 +36,7 @@ The React app renders session state, owns the client-side WebSocket transport, a
 React 应用渲染会话状态，管理客户端 WebSocket 传输，并将类型化推送事件作为服务器运行时细节与 UI 状态之间的边界。
 
 **Key Features / 主要功能**:
+
 - Session management UI / 会话管理界面
 - Code editor integration / 代码编辑器集成
 - Terminal emulator / 终端模拟器
@@ -49,6 +50,7 @@ React 应用渲染会话状态，管理客户端 WebSocket 传输，并将类型
 `apps/server` 是主协调器。它提供 Web 应用服务，接受 WebSocket 请求，在欢迎客户端之前等待启动就绪，并通过单个有序推送路径发送所有出站推送。
 
 **Key Features / 主要功能**:
+
 - WebSocket server / WebSocket 服务器
 - HTTP static file serving / HTTP 静态文件服务
 - Session management / 会话管理
@@ -63,6 +65,7 @@ React 应用渲染会话状态，管理客户端 WebSocket 传输，并将类型
 `codex app-server` 执行实际的代理/会话工作。服务器通过 stdio 上的 JSON-RPC 与其通信，并将这些运行时事件转换为应用的编排模型。
 
 **Supported Providers / 支持的代理**:
+
 - Claude Code
 - Codex
 - Gemini
@@ -76,6 +79,7 @@ Long-running async flows such as runtime ingestion, command reaction, and checkp
 长时间运行的异步流程（如运行时摄取、命令响应和检查点处理）作为队列支持的工作者运行。这保持工作有序，减少时序竞争，并为测试提供了一种确定性的方式来等待系统空闲。
 
 **Worker Types / 工作者类型**:
+
 - `ProviderRuntimeIngestion`: 代理运行时事件摄取
 - `ProviderCommandReactor`: 代理命令响应器
 - `CheckpointReactor`: 检查点处理器
@@ -87,6 +91,7 @@ The server emits lightweight typed receipts when important async milestones fini
 当重要的异步里程碑完成时（如检查点捕获、差异完成或回合完全静止），服务器会发出轻量级类型化收据。测试和编排代码等待这些信号而不是轮询内部状态。
 
 **Signal Types / 信号类型**:
+
 - Checkpoint completion / 检查点完成
 - Turn quiescence / 回合静止
 - Diff finalization / 差异完成
@@ -122,11 +127,11 @@ sequenceDiagram
 4. Once the server is ready, [`wsServer`][3] sends `server.welcome` from the contracts in [`ws.ts`][6] through [`ServerPushBus`][5].
 5. The browser receives that ordered push through [`WsTransport`][1], and [`wsNativeApi`][2] uses it to seed local client state.
 
-1. 浏览器启动 [`WsTransport`][1] 并在 [`wsNativeApi`][2] 中注册类型化监听器。
-2. 服务器在 [`wsServer`][3] 中接受连接，并启动 [`serverLayers`][7] 中定义的运行时图。
-3. [`ServerReadiness`][4] 等待关键启动障碍完成。
-4. 服务器就绪后，[`wsServer`][3] 通过 [`ServerPushBus`][5] 发送来自 [`ws.ts`][6] 合约的 `server.welcome`。
-5. 浏览器通过 [`WsTransport`][1] 接收有序推送，[`wsNativeApi`][2] 用它来初始化本地客户端状态。
+6. 浏览器启动 [`WsTransport`][1] 并在 [`wsNativeApi`][2] 中注册类型化监听器。
+7. 服务器在 [`wsServer`][3] 中接受连接，并启动 [`serverLayers`][7] 中定义的运行时图。
+8. [`ServerReadiness`][4] 等待关键启动障碍完成。
+9. 服务器就绪后，[`wsServer`][3] 通过 [`ServerPushBus`][5] 发送来自 [`ws.ts`][6] 合约的 `server.welcome`。
+10. 浏览器通过 [`WsTransport`][1] 接收有序推送，[`wsNativeApi`][2] 用它来初始化本地客户端状态。
 
 ### User Turn Flow / 用户回合流程
 
@@ -159,12 +164,12 @@ sequenceDiagram
 5. [`OrchestrationEngine`][10] persists those events, updates the read model, and exposes them as domain events.
 6. [`wsServer`][3] pushes those updates to the browser through [`ServerPushBus`][5] on channels defined in [`orchestration.ts`][11].
 
-1. 浏览器中的用户操作通过 [`WsTransport`][1] 和 [`nativeApi`][12] 中的浏览器 API 层变成类型化请求。
-2. [`wsServer`][3] 使用 [`ws.ts`][6] 中的共享 WebSocket 合约解码请求，并将其路由到正确的服务。
-3. [`ProviderService`][8] 启动或恢复会话，并通过 stdio 上的 JSON-RPC 与 `codex app-server` 通信。
-4. 代理原生事件由 [`ProviderRuntimeIngestion`][9] 拉回到服务器，将其转换为编排事件。
-5. [`OrchestrationEngine`][10] 持久化这些事件，更新读取模型，并将其作为领域事件公开。
-6. [`wsServer`][3] 通过 [`ServerPushBus`][5] 在 [`orchestration.ts`][11] 定义的通道上向浏览器推送这些更新。
+7. 浏览器中的用户操作通过 [`WsTransport`][1] 和 [`nativeApi`][12] 中的浏览器 API 层变成类型化请求。
+8. [`wsServer`][3] 使用 [`ws.ts`][6] 中的共享 WebSocket 合约解码请求，并将其路由到正确的服务。
+9. [`ProviderService`][8] 启动或恢复会话，并通过 stdio 上的 JSON-RPC 与 `codex app-server` 通信。
+10. 代理原生事件由 [`ProviderRuntimeIngestion`][9] 拉回到服务器，将其转换为编排事件。
+11. [`OrchestrationEngine`][10] 持久化这些事件，更新读取模型，并将其作为领域事件公开。
+12. [`wsServer`][3] 通过 [`ServerPushBus`][5] 在 [`orchestration.ts`][11] 定义的通道上向浏览器推送这些更新。
 
 ### Async Completion Flow / 异步完成流程
 
@@ -194,11 +199,11 @@ sequenceDiagram
 4. Tests and orchestration code wait on those receipts instead of polling git state, projections, or timers.
 5. Any user-visible state changes produced by that async work still go back through [`wsServer`][3] and [`ServerPushBus`][5].
 
-1. 初始请求返回后，某些工作仍在继续，特别是在 [`ProviderRuntimeIngestion`][9]、[`ProviderCommandReactor`][13] 和 [`CheckpointReactor`][14] 中。
-2. 这些流程使用 [`DrainableWorker`][16] 作为队列支持的工作者运行，这有助于保持副作用有序，并使测试同步具有确定性。
-3. 当里程碑完成时，服务器在 [`RuntimeReceiptBus`][15] 上发出类型化收据，例如检查点完成或回合静止。
-4. 测试和编排代码等待这些收据，而不是轮询 git 状态、投影或计时器。
-5. 该异步工作产生的任何用户可见状态更改仍通过 [`wsServer`][3] 和 [`ServerPushBus`][5] 返回。
+6. 初始请求返回后，某些工作仍在继续，特别是在 [`ProviderRuntimeIngestion`][9]、[`ProviderCommandReactor`][13] 和 [`CheckpointReactor`][14] 中。
+7. 这些流程使用 [`DrainableWorker`][16] 作为队列支持的工作者运行，这有助于保持副作用有序，并使测试同步具有确定性。
+8. 当里程碑完成时，服务器在 [`RuntimeReceiptBus`][15] 上发出类型化收据，例如检查点完成或回合静止。
+9. 测试和编排代码等待这些收据，而不是轮询 git 状态、投影或计时器。
+10. 该异步工作产生的任何用户可见状态更改仍通过 [`wsServer`][3] 和 [`ServerPushBus`][5] 返回。
 
 ---
 
@@ -211,6 +216,7 @@ The presentation layer consists of React components, hooks, and state management
 表示层由 React 组件、hooks 和状态管理组成。它处理 UI 渲染和用户交互。
 
 **Components / 组件**:
+
 - Chat interface / 聊天界面
 - Code editor / 代码编辑器
 - Terminal component / 终端组件
@@ -224,6 +230,7 @@ The application layer contains the native API, event handlers, and business logi
 应用层包含原生 API、事件处理器和业务逻辑。它作为表示层和领域层之间的桥梁。
 
 **Components / 组件**:
+
 - `nativeApi`: 客户端 API 封装
 - Event handlers / 事件处理器
 - Business rules / 业务规则
@@ -235,6 +242,7 @@ The domain layer contains the orchestration engine, domain events, and state pro
 领域层包含编排引擎、领域事件和状态投影。它代表核心业务逻辑和状态管理。
 
 **Components / 组件**:
+
 - `OrchestrationEngine`: 编排引擎
 - Domain events / 领域事件
 - State projections / 状态投影
@@ -246,6 +254,7 @@ The infrastructure layer contains the provider service, Git service, terminal se
 基础设施层包含代理服务、Git 服务、终端服务和其他外部集成。
 
 **Components / 组件**:
+
 - `ProviderService`: 代理服务
 - Git integration / Git 集成
 - Terminal service / 终端服务

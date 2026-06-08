@@ -124,8 +124,7 @@ async function readSkillDescriptor(
     return null;
   }
   const frontmatter = parseFrontmatter(raw);
-  const name =
-    normalizeFrontmatterValue(frontmatter.name) ?? path.basename(skillDir);
+  const name = normalizeFrontmatterValue(frontmatter.name) ?? path.basename(skillDir);
   const description = normalizeFrontmatterValue(frontmatter.description);
   const version = normalizeFrontmatterValue(frontmatter.version);
   const homepage = resolveHomepage(frontmatter);
@@ -153,7 +152,9 @@ async function listSkillsInDir(dir: SkillSearchDir): Promise<LocalUserSkillDescr
   const descriptors = await Promise.all(
     directories.map((entry) => readSkillDescriptor(dir, path.join(dir.path, entry.name))),
   );
-  return descriptors.filter((descriptor): descriptor is LocalUserSkillDescriptor => descriptor !== null);
+  return descriptors.filter(
+    (descriptor): descriptor is LocalUserSkillDescriptor => descriptor !== null,
+  );
 }
 
 export async function listLocalUserSkills(): Promise<ListLocalUserSkillsResult> {

@@ -6,11 +6,7 @@
 //          PluginGlyph, SkillGlyph, InstalledStatus, ProviderIconByKind
 
 import { useState, type ReactNode, type SVGProps } from "react";
-import {
-  HammerIcon,
-  CheckIcon,
-  type LucideIcon,
-} from "~/lib/icons";
+import { HammerIcon, CheckIcon, type LucideIcon } from "~/lib/icons";
 import {
   PROVIDER_DISPLAY_NAMES,
   type ProviderKind,
@@ -166,7 +162,10 @@ export function PluginGlyph({ plugin }: { plugin: ProviderPluginDescriptor }) {
   }
 
   return (
-    <span className="inline-flex size-11 shrink-0 items-center justify-center rounded-[14px]" style={style}>
+    <span
+      className="inline-flex size-11 shrink-0 items-center justify-center rounded-[14px]"
+      style={style}
+    >
       <HammerIcon className="size-4 text-foreground/85" />
     </span>
   );

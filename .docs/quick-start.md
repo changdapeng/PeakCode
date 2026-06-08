@@ -227,40 +227,40 @@ rm -rf node_modules apps/*/node_modules packages/*/node_modules
 
 ### Development / 开发环境
 
-| Variable / 变量 | Description / 描述 | Default / 默认值 |
-|----------------|-------------------|-----------------|
-| `T3CODE_PORT_OFFSET` | 端口偏移量 | `0` |
-| `T3CODE_NO_BROWSER` | 是否禁止自动打开浏览器 | `false` |
-| `T3CODE_AUTH_TOKEN` | 认证令牌 | - |
-| `PEAKCODE_DEV_INSTANCE` | 开发实例名称 | - |
+| Variable / 变量         | Description / 描述     | Default / 默认值 |
+| ----------------------- | ---------------------- | ---------------- |
+| `T3CODE_PORT_OFFSET`    | 端口偏移量             | `0`              |
+| `T3CODE_NO_BROWSER`     | 是否禁止自动打开浏览器 | `false`          |
+| `T3CODE_AUTH_TOKEN`     | 认证令牌               | -                |
+| `PEAKCODE_DEV_INSTANCE` | 开发实例名称           | -                |
 
 ### Production / 生产环境
 
 | Variable / 变量 | Description / 描述 | Default / 默认值 |
-|----------------|-------------------|-----------------|
-| `NODE_ENV` | 运行环境 | `production` |
-| `PORT` | 服务端口 | `3773` |
+| --------------- | ------------------ | ---------------- |
+| `NODE_ENV`      | 运行环境           | `production`     |
+| `PORT`          | 服务端口           | `3773`           |
 
 ---
 
 ## Quick Reference / 快速参考
 
-| Command / 命令 | Description / 描述 |
-|---------------|-------------------|
-| `bun run dev` | 启动完整开发环境 |
-| `bun run dev:server` | 仅启动服务器 |
-| `bun run dev:web` | 仅启动 Web UI |
-| `bun run dev:desktop` | 启动桌面应用开发 |
-| `bun run dev:marketing` | 启动营销网站开发 |
-| `bun run build` | 构建所有项目 |
-| `bun run start` | 启动生产服务器 |
-| `bun run test` | 运行所有测试 |
-| `bun run lint` | 运行代码检查 |
-| `bun run fmt` | 格式化代码 |
-| `bun run typecheck` | 类型检查 |
-| `bun run dist:desktop:dmg` | 构建 macOS DMG |
+| Command / 命令               | Description / 描述  |
+| ---------------------------- | ------------------- |
+| `bun run dev`                | 启动完整开发环境    |
+| `bun run dev:server`         | 仅启动服务器        |
+| `bun run dev:web`            | 仅启动 Web UI       |
+| `bun run dev:desktop`        | 启动桌面应用开发    |
+| `bun run dev:marketing`      | 启动营销网站开发    |
+| `bun run build`              | 构建所有项目        |
+| `bun run start`              | 启动生产服务器      |
+| `bun run test`               | 运行所有测试        |
+| `bun run lint`               | 运行代码检查        |
+| `bun run fmt`                | 格式化代码          |
+| `bun run typecheck`          | 类型检查            |
+| `bun run dist:desktop:dmg`   | 构建 macOS DMG      |
 | `bun run dist:desktop:linux` | 构建 Linux AppImage |
-| `bun run dist:desktop:win` | 构建 Windows 安装包 |
+| `bun run dist:desktop:win`   | 构建 Windows 安装包 |
 
 ---
 

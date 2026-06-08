@@ -7,13 +7,7 @@
 
 import { useDeferredValue, useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
-import {
-  BookIcon,
-  CheckIcon,
-  CircleAlertIcon,
-  ExternalLinkIcon,
-  SearchIcon,
-} from "~/lib/icons";
+import { BookIcon, CheckIcon, CircleAlertIcon, ExternalLinkIcon, SearchIcon } from "~/lib/icons";
 import { localSkillsQueryOptions } from "~/localSkillsReactQuery";
 import { useMessages } from "~/i18n/I18nContext";
 import { SidebarInset } from "./ui/sidebar";
@@ -144,9 +138,7 @@ export function SkillsView() {
                 ) : data.filteredSkills.length === 0 ? (
                   <SkillsEmptyPanel
                     title={
-                      deferredQuery
-                        ? messages.skills.emptySearchTitle
-                        : messages.skills.emptyTitle
+                      deferredQuery ? messages.skills.emptySearchTitle : messages.skills.emptyTitle
                     }
                     description={
                       deferredQuery
@@ -213,11 +205,7 @@ function LocalSkillsSection({
         </h2>
         <div className="mt-3">
           <SkillsEmptyPanel
-            title={
-              search
-                ? messages.skills.localEmptySearchTitle
-                : messages.skills.localEmptyTitle
-            }
+            title={search ? messages.skills.localEmptySearchTitle : messages.skills.localEmptyTitle}
             description={
               search
                 ? messages.skills.localEmptySearchDescription
@@ -322,7 +310,10 @@ function ProviderSkillCard({
     name: string;
     description?: string | undefined;
     interface?:
-      | { readonly displayName?: string | undefined; readonly shortDescription?: string | undefined }
+      | {
+          readonly displayName?: string | undefined;
+          readonly shortDescription?: string | undefined;
+        }
       | undefined;
     enabled: boolean;
     path: string;
@@ -336,13 +327,9 @@ function ProviderSkillCard({
         {skill.name.charAt(0).toUpperCase()}
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-[13px] font-semibold leading-snug text-foreground">
-          {displayName}
-        </p>
+        <p className="text-[13px] font-semibold leading-snug text-foreground">{displayName}</p>
         {description ? (
-          <p className="mt-0.5 truncate text-[12px] text-muted-foreground">
-            {description}
-          </p>
+          <p className="mt-0.5 truncate text-[12px] text-muted-foreground">{description}</p>
         ) : null}
       </div>
       {skill.enabled ? (

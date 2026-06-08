@@ -22,7 +22,8 @@ const AUTOMATION_TEMPLATES: ReadonlyArray<AutomationTemplate> = [
   {
     id: "weekly-review",
     title: "Weekly review",
-    description: "Every Friday, generate a recap of the week with highlights, blockers, and next steps.",
+    description:
+      "Every Friday, generate a recap of the week with highlights, blockers, and next steps.",
     prompt:
       "Create a weekly review automation that runs every Friday at 4:00 PM, generating a recap of the week with highlights, blockers, and proposed next steps.",
     icon: BookIcon,
@@ -30,7 +31,8 @@ const AUTOMATION_TEMPLATES: ReadonlyArray<AutomationTemplate> = [
   {
     id: "project-monitor",
     title: "Project monitor",
-    description: "Watch the active project for failing checks, stale issues, or drift, and surface a digest on demand.",
+    description:
+      "Watch the active project for failing checks, stale issues, or drift, and surface a digest on demand.",
     prompt:
       "Create an on-demand project monitor automation that scans the active project for failing checks, stale issues, or unreviewed pull requests and produces a prioritized digest.",
     icon: RocketIcon,
@@ -118,9 +120,7 @@ function AutomationTemplateCard({ template }: { template: AutomationTemplate }) 
         <Icon className="size-4 text-foreground/85" />
       </div>
       <div className="min-w-0">
-        <p className="text-[13px] font-semibold leading-snug text-foreground">
-          {template.title}
-        </p>
+        <p className="text-[13px] font-semibold leading-snug text-foreground">{template.title}</p>
         <p className="mt-1 line-clamp-3 text-[12px] leading-relaxed text-muted-foreground/85">
           {template.description}
         </p>
