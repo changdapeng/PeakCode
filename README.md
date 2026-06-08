@@ -10,6 +10,7 @@
 </p>
 
 <p align="center">
+  <a href="./README.zh.md">中文</a> •
   <a href="https://github.com/PeakCode-AI/PeakCode/blob/main/LICENSE">
     <img src="https://img.shields.io/github/license/PeakCode-AI/PeakCode?style=flat-square" alt="License" />
   </a>
