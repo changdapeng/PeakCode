@@ -152,7 +152,7 @@ bun run dist:desktop:win   # Windows installer
 Run alongside an existing Peak Code instance without port conflicts:
 
 ```bash
-env -u T3CODE_AUTH_TOKEN T3CODE_PORT_OFFSET=3158 T3CODE_NO_BROWSER=1 \
+env -u PEAKCODE_AUTH_TOKEN PEAKCODE_PORT_OFFSET=3158 PEAKCODE_NO_BROWSER=1 \
   bun run dev -- --home-dir ./.peakcode-dev --port 58090
 ```
 
@@ -170,7 +170,6 @@ We welcome contributions! Please read [CONTRIBUTING.md](./CONTRIBUTING.md) befor
 
 ## Community
 
-- **[Discord](https://discord.gg/jn4EGJjrvv)** — real-time chat, support, and discussions
 - **[GitHub Issues](https://github.com/PeakCode-AI/PeakCode/issues)** — bug reports and feature requests
 
 ## Star History
