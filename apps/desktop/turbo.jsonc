@@ -1,0 +1,24 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "extends": ["//"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist-electron/**"],
+    },
+    "dev": {
+      "dependsOn": ["peakcode#build"],
+      "persistent": true,
+    },
+    "start": {
+      "dependsOn": ["build", "@peakcode/web#build", "peakcode#build"],
+      "cache": false,
+      "persistent": true,
+    },
+    "smoke-test": {
+      "dependsOn": ["build", "@peakcode/web#build", "peakcode#build"],
+      "cache": false,
+      "outputs": [],
+    },
+  },
+}

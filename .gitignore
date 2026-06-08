@@ -1,0 +1,56 @@
+node_modules
+.bun
+.turbo
+.DS_Store
+*.log
+*.tsbuildinfo
+apps/*/dist
+.astro
+packages/*/dist
+.env
+.env.local
+build/
+.logs/
+release/
+.t3
+/.peakcode/electron-dev
+/.peakcode/backups
+.idea/
+apps/web/.playwright
+apps/web/playwright-report
+.playwright-cli/
+apps/web/src/components/__screenshots__
+.vitest-*
+__screenshots__/
+.tanstack
+/.pi/
+/.tmp/
+/~/
+/bootstrap.js
+/preload.js
+/browser-sidebar-comment-preload.js
+/main-*.js
+/main-*.js.map
+/browser-sidebar-comment-preload.js.map
+/preload.js.map
+/bootstrap.js.map
+
+# Local dev instance data
+.peakcode-*/
+
+# Internal plans and iteration docs
+.plans/
+.plans/**/*.md
+docs/
+
+# Playwright MCP artifacts
+.playwright-mcp/
+
+# User data (logs, attachments, secrets)
+userdata/
+
+# Claude / IDE local config
+.claude/
+
+# Misc local artifacts
+成/
