@@ -1,10 +1,10 @@
 {
   "name": "peakcode",
-  "version": "0.0.50",
+  "version": "0.1.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Emanuele-web04/peakcode",
+    "url": "https://github.com/PeakCode-AI/PeakCode",
     "directory": "apps/server"
   },
   "bin": {
