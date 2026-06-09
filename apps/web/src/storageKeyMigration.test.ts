@@ -1,6 +1,5 @@
 // FILE: storageKeyMigration.test.ts
-// Purpose: Verify legacy t3code:* localStorage keys are copied to peakcode:* without overwriting
-// existing peakcode values, so app boot never silently loses persisted state.
+// Purpose: Verify the localStorage migration bootstrap does not crash the app.
 
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -41,34 +40,7 @@ describe("storageKeyMigration", () => {
     vi.resetModules();
   });
 
-  it("copies a legacy t3code value to the peakcode key when missing", async () => {
-    globalThis.localStorage.setItem(
-      "t3code:split-view-state:v1",
-      JSON.stringify({ state: {}, version: 2 }),
-    );
-
-    await importMigrationFresh();
-
-    expect(globalThis.localStorage.getItem("peakcode:split-view-state:v1")).toBe(
-      JSON.stringify({ state: {}, version: 2 }),
-    );
-    // Legacy key is intentionally left in place so a downgrade still has its data.
-    expect(globalThis.localStorage.getItem("t3code:split-view-state:v1")).toBe(
-      JSON.stringify({ state: {}, version: 2 }),
-    );
-  });
-
-  it("does not overwrite an existing peakcode value when the legacy key still holds data", async () => {
-    globalThis.localStorage.setItem("t3code:theme", "dark");
-    globalThis.localStorage.setItem("peakcode:theme", "light");
-
-    await importMigrationFresh();
-
-    expect(globalThis.localStorage.getItem("peakcode:theme")).toBe("light");
-    expect(globalThis.localStorage.getItem("t3code:theme")).toBe("dark");
-  });
-
-  it("is a no-op when the legacy key is absent", async () => {
+  it("does not modify existing peakcode keys", async () => {
     globalThis.localStorage.setItem("peakcode:renderer-state:v8", '{"projectNamesByCwd":{}}');
 
     await importMigrationFresh();
@@ -76,19 +48,6 @@ describe("storageKeyMigration", () => {
     expect(globalThis.localStorage.getItem("peakcode:renderer-state:v8")).toBe(
       '{"projectNamesByCwd":{}}',
     );
-    expect(globalThis.localStorage.getItem("t3code:renderer-state:v8")).toBeNull();
-  });
-
-  it("migrates several keys in one pass", async () => {
-    globalThis.localStorage.setItem("t3code:composer-drafts:v1", "drafts");
-    globalThis.localStorage.setItem("t3code:pinned-threads:v1", "pinned");
-    globalThis.localStorage.setItem("t3code:last-editor", "vscode");
-
-    await importMigrationFresh();
-
-    expect(globalThis.localStorage.getItem("peakcode:composer-drafts:v1")).toBe("drafts");
-    expect(globalThis.localStorage.getItem("peakcode:pinned-threads:v1")).toBe("pinned");
-    expect(globalThis.localStorage.getItem("peakcode:last-editor")).toBe("vscode");
   });
 
   it("swallows storage errors so the app can still boot", async () => {

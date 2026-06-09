@@ -14,8 +14,5 @@ export function normalizeDesktopWsUrl(value: unknown): string | null {
 }
 
 export function resolveDesktopWsUrlFromEnv(env: NodeJS.ProcessEnv): string | null {
-  return (
-    normalizeDesktopWsUrl(env.PEAKCODE_DESKTOP_WS_URL) ??
-    normalizeDesktopWsUrl(env.T3CODE_DESKTOP_WS_URL)
-  );
+  return normalizeDesktopWsUrl(env.PEAKCODE_DESKTOP_WS_URL);
 }

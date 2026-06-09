@@ -286,8 +286,7 @@ function isBrowserPerfLoggingEnabled(): boolean {
 
   try {
     return (
-      window.localStorage.getItem("peakcode:browser-perf") === "1" ||
-      window.localStorage.getItem("t3code:browser-perf") === "1"
+      window.localStorage.getItem("peakcode:browser-perf") === "1"
     );
   } catch {
     return false;

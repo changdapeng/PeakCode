@@ -87,13 +87,6 @@ describe("formatWorktreePathForDisplay", () => {
     expect(result).toBe("peakcode-4e609bb8");
   });
 
-  it("keeps legacy .t3 worktree paths readable after migration", () => {
-    const result = formatWorktreePathForDisplay(
-      "/Users/julius/.t3/worktrees/t3code-mvp/t3code-legacy123",
-    );
-    expect(result).toBe("t3code-legacy123");
-  });
-
   it("normalizes windows separators before selecting the final segment", () => {
     const result = formatWorktreePathForDisplay(
       "C:\\Users\\julius\\.peakcode\\worktrees\\peakcode-mvp\\peakcode-4e609bb8",

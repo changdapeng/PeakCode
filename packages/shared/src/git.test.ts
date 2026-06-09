@@ -65,8 +65,8 @@ describe("buildPeakcodeBranchName", () => {
     );
   });
 
-  it("normalizes legacy t3code-style prefixes before rebuilding the branch", () => {
-    expect(buildPeakcodeBranchName("t3code/refine toolbar actions")).toBe(
+  it("normalizes legacy codex-style prefixes before rebuilding the branch", () => {
+    expect(buildPeakcodeBranchName("codex/refine toolbar actions")).toBe(
       "peakcode/refine-toolbar-actions",
     );
   });

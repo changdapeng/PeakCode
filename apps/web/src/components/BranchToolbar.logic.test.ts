@@ -41,10 +41,10 @@ describe("resolveDraftEnvModeAfterBranchChange", () => {
     ).toBe("worktree");
   });
 
-  it("keeps legacy .t3 worktree paths working for migrated threads", () => {
+  it("resolves worktree mode for worktree paths", () => {
     expect(
       resolveDraftEnvModeAfterBranchChange({
-        nextWorktreePath: "/repo/.t3/worktrees/feature-a",
+        nextWorktreePath: "/repo/.peakcode/worktrees/feature-a",
         currentWorktreePath: null,
         effectiveEnvMode: "local",
       }),

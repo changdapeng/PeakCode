@@ -112,10 +112,7 @@ interface SplitViewStore {
   setHasHydrated: (hasHydrated: boolean) => void;
 }
 
-// Keep the v1 suffix stable while using the PeakCode namespace; the legacy
-// `t3code:split-view-state:v1` key is copied over to this one by
-// `storageKeyMigration` before this store hydrates, so older payloads still
-// flow through the v1 -> v2 schema migration below.
+// Keep the v1 suffix stable while using the PeakCode namespace.
 const SPLIT_VIEW_STORAGE_KEY = "peakcode:split-view-state:v1";
 const SPLIT_VIEW_STORAGE_VERSION = 2;
 const DEFAULT_RATIO = 0.5;
